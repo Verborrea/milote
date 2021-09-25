@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mi Lote | Reglamentación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.com/4855031b-abce-4c44-bba6-e505bb13b746%2Ffavicon.ico?v=1614220224560"
+    />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/doc.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <script src="/js/doc.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo-div">
+        <a href="/"
+          ><h1 id="logo-h1">
+            <img
+              id="img_logo"
+              src="https://cdn.glitch.com/4855031b-abce-4c44-bba6-e505bb13b746%2Floco.png?v=1615064707320"
+              alt="Mi Lote logo"
+            />mi lote
+          <div id="alpha">beta</div>
+          </h1></a
+        >
+      </div>
+      <input id="nav_toggle" type="checkbox" class="nav_toggle" />
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li>
+            <a href="">Servicios</a>
+            <ul>
+              <li><a href="/map">Conoce tu lote</a></li>
+              <li><a href="/calculadora/100">Calculadora de precios</a></li>
+              <li><a href="/doc">Documentación</a></li>
+            </ul>
+          </li>
+          <li><a href="">Contáctanos</a></li>
+        </ul>
+      </nav>
+      <label for="nav_toggle" class="nav_toggle_label">
+        <span></span>
+      </label>
+    </header>
+    <div id="main">
+      <button class="doc_toggle_label" onclick="show_table()">Lista de contenidos</button>
+      <div id="container">
+        <div id="side">
+          <div class="categoria">
+            <h1 class="nom_categoria">
+              <a href="/doc">Introducción</a>
+            </h1>
+            <ul>
+                <li><a href="/doc#tutos">Tutoriales</a></li>
+                <li><a href="/doc#mapa">Mapa</a></li>
+                <li><a href="/doc#calculadora">Calculadora</a></li>
+            </ul>
+          </div>
+          <div class="categoria">
+            <h1 class="nom_categoria">
+              <a href="/doc/zonas">Zonas</a>
+            </h1>
+            <ul>
+              <li><a href="/doc/zonas#rdb1">Residencial Densidad Baja Tipo I</a></li>
+              <li><a href="/doc/zonas#rdm1">Residencial Densidad Media Tipo I</a></li>
+              <li><a href="/doc/zonas#rdm2">Residencial Densidad Media Tipo II</a></li>
+              <li><a href="/doc/zonas#rda1">Residencial Densidad Alta Tipo I</a></li>
+              <li><a href="/doc/zonas#rda2">Residencial Densidad Alta Tipo II</a></li>
+              <li><a href="/doc/zonas#vt">Vivienda Taller</a></li>
+              <li><a href="/doc/zonas#cv">Comercio Vecinal</a></li>
+              <li><a href="/doc/zonas#cs">Comercio Sectorial</a></li>
+              <li><a href="/doc/zonas#cz">Comercio Zonal</a></li>
+              <li><a href="/doc/zonas#zr">Zona de Recreación</a></li>
+            </ul>
+          </div>
+          <div class="categoria">
+            <h1 class="nom_categoria">
+              <a href="/doc/terminos">Términos</a>
+            </h1>
+            <ul>
+              <li><a href="/doc/terminos#lote">Lote</a></li>
+              <li><a href="/doc/terminos#zona">Zona</a></li>
+              <li><a href="/doc/terminos#atotal">Área Total</a></li>
+              <li><a href="/doc/terminos#atechada">Área Techada</a></li>
+              <li><a href="/doc/terminos#alibre">Área Libre</a></li>
+              <li><a href="/doc/terminos#coef">Coeficiente de edificación</a></li>
+              <li><a href="/doc/terminos#amax">Altura máxima</a></li>
+              <li><a href="/doc/terminos#ret">Retiro</a></li>
+              <li><a href="/doc/terminos#est">Estacionamiento</a></li>
+            </ul>
+          </div>
+          <div class="categoria">
+            <h1 class="nom_categoria">
+              <a href="/doc/reglamentacion">Reglamentación</a>
+            </h1>
+          </div>
+      </div>
+        <div id="content">
+          <h1>
+            Reglamentación
+          </h1>
+        </div>
+        <div id ="publi">
+          
+        </div>
+      </div>
+    </div>
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+  </body>
+</html>

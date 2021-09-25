@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mi Lote | Calculadora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.com/4855031b-abce-4c44-bba6-e505bb13b746%2Ffavicon.ico?v=1614220224560"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/cal.css" />
+    <script src="/json/precios.js"></script>
+    <script src="/js/cal.js"></script>
+  </head>
+  <body onload="init()">
+    <header>
+      <div class="logo-div">
+        <a href="/"
+          ><h1 id="logo-h1">
+            <img
+              id="img_logo"
+              src="https://cdn.glitch.com/4855031b-abce-4c44-bba6-e505bb13b746%2Floco.png?v=1615064707320"
+              alt="Mi Lote logo"
+            />mi lote
+            <div id="alpha">beta</div>
+          </h1></a
+        >
+      </div>
+      <input id="nav_toggle" type="checkbox" class="nav_toggle" />
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li>
+            <a href="">Servicios</a>
+            <ul>
+              <li><a href="/map">Conoce tu lote</a></li>
+              <li><a href="/calculadora/100">Calculadora de precios</a></li>
+              <li><a href="/doc">Documentación</a></li>
+              <li><a href="/tab">Tabla</a></li>
+            </ul>
+          </li>
+          <li><a href="">Contáctanos</a></li>
+        </ul>
+      </nav>
+      <label for="nav_toggle" class="nav_toggle_label">
+        <span></span>
+      </label>
+    </header>
+    <div id="main">
+      <div id="titulo">
+        CALCULADORA DE PRECIOS
+      </div>
+      <div id="content">
+        <p style="text-align:justify">
+          La herramienta calculadora le permite calcular un precio <b>aproximado</b> de la construcción de su lote (sin tomar en cuenta los muebles), para ello solo debe ingresar el área techada de su lote y escoger entre una serie de opciones respecto a las estructuras, acabados e instalaciones deseados.
+        </p>
+        <br>
+        <p style="text-align:justify">
+          Si desconoce el área techada de su lote puede usar la herramienta <a href="#mapa">Mapa</a> para descubrirlo. Si desea saber cómo usar la herramienta o cómo funciona puede revisar un tutorial paso a paso <a href="/doc#calculadora">aquí</a>
+        </p>
+      </div>
+      <div id="info">
+        <div>
+          <span class="info_span">Área Techada:</span>
+          <input type="text" id="area_input" size="6" oninput="calcular()" value="{{ output }}" autocomplete="off">
+          <span>m<sup>2</sup></span>
+        </div>
+        <div>
+          <span class="info_span">Moneda:</span>
+          <select id="moneda_input" onchange="cambio_mon()">
+            <option value="0">Soles s/.</option>
+            <option value="1">Dólares $</option>
+          </select>
+        </div>
+      </div>
+      <div id="bts">
+        <div class="btn_container">
+          <button pos="0" onclick="show_op(0)">Muros y Columnas</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>
+        <div class="options" pos="0" id="myc"></div>
+        <div class="btn_container">
+          <button pos="1" onclick="show_op(1)">Techos</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>
+        <div class="options" pos="1" id="tch"></div>
+        <div class="btn_container">
+          <button pos="2" onclick="show_op(2)">Pisos</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>
+        <div class="options" pos="2" id="pis"></div>
+        <div class="btn_container">
+          <button pos="3" onclick="show_op(3)">Puertas y Ventanas</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>
+        <div class="options" pos="3" id="pyv"></div>
+        <div class="btn_container">
+          <button pos="4" onclick="show_op(4)">Revestimientos</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>  
+        <div class="options" pos="4" id="rev"></div>
+        <div class="btn_container">
+          <button pos="5" onclick="show_op(5)">Baños</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>
+        <div class="options" pos="5" id="ban"></div>
+        <div class="btn_container">
+          <button pos="6" onclick="show_op(6)">Instalaciones</button>
+          <div class="material-icons md-14" onclick="show_tooltip(this)">info
+            <div class="tooltiptext">
+              Texto muy largo el cual pues bueno es muy largo. Aunque no tan largo como pienso
+            </div>
+          </div>
+        </div>
+        <div class="options" pos="6" id="ins"></div>
+      </div>
+      <div id="p_m2">
+        <h><b>Precio m<sup>2</sup>: </b></h>
+        <span id="moneda1">s/ </span>
+        <span id="res1"></span>
+      </div>
+      <div id="total">
+        <h><b>TOTAL: </b></h>
+        <span id="moneda2">s/ </span>
+        <span id="res2"></span>
+      </div>
+    </div>
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+  </body>
+</html>
