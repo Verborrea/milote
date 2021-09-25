@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mi Lote | Descubre tu Lote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.com/4855031b-abce-4c44-bba6-e505bb13b746%2Ffavicon.ico?v=1614220224560"
+    />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/map.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?key=AqwCoTdEYge6bMdrCh9uhrfZ-Z8yNGiupnDMBx3aPjeTze_oM8n0YcpRbYZKE7Sk"></script>
+    <script src="/js/three.js"></script>
+		<script src="/js/OrbitControls.js"></script>
+    <script src="/js/3d.js"></script>
+    <script src="/js/script.js"></script> 
+    <script src="/js/bus.js"></script> 
+  </head>
+  <body onload="GetMap();">
+    <header>
+      <div class="logo-div">
+        <a href="/"
+          ><h1 id="logo-h1">
+            <img
+              id="img_logo"
+              src="https://cdn.glitch.com/4855031b-abce-4c44-bba6-e505bb13b746%2Floco.png?v=1615064707320"
+              alt="Mi Lote logo"
+            />mi lote
+          <div id="alpha">beta</div>
+          </h1>
+        </a>
+      </div>
+      <input id="nav_toggle" type="checkbox" class="nav_toggle" />
+      <nav>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li>
+            <a href="">Servicios</a>
+            <ul>
+              <li><a href="/map">Conoce tu lote</a></li>
+              <li><a href="/calculadora/100">Calculadora de precios</a></li>
+              <li><a href="/doc">Documentación</a></li>
+            </ul>
+          </li>
+          <li><a href="">Contáctanos</a></li>
+        </ul>
+      </nav>
+      <label for="nav_toggle" class="nav_toggle_label">
+        <span></span>
+      </label>
+    </header>
+    <div id="main">
+      <div id="content">
+        <div class="form-inline">
+          <input id="distrito" type="text" placeholder="Distrito">
+          <input id="calle" type="text" placeholder="Urb/Calle/Psj">
+          <input id="mznro" type="text" placeholder="Mzn y/o Nro">
+          <button onclick="buscar()">Buscar</button>
+        </div>
+        <div id="map-wrapper">
+          <div id="map"></div>
+          <div id="layers-div">
+            <input type="checkbox" id="layers_cb" style="display:none"/>
+            <label id="layers_label" for="layers_cb">
+              <span class="material-icons" id="layers_icon" onclick="chng_name(this,'layers','layers_clear')">
+                layers
+              </span>
+            </label>
+            <div id="capas-div">
+              <div>
+              <span>Mapa</span>
+              <input
+                type="range"
+                id="map_range"
+                class="range"
+                min="0"
+                max="1"
+                value="1"
+                step="0.05"
+              />
+              <span id="map_range_span">100%</span>
+            </div>
+              <div>
+                <span>Lotes</span>
+                <input
+                  type="range"
+                  id="lotes_range"
+                  class="range"
+                  min="0"
+                  max="1"
+                  value="0.5"
+                  step="0.05"
+                />
+                <span id="lotes_range_span">50%</span>
+              </div>
+              <div>
+                <span>Zonas</span>
+                <input
+                  type="range"
+                  id="zonas_range"
+                  class="range"
+                  min="0"
+                  max="1"
+                  value="0.5"
+                  step="0.05"
+                />
+                <span id="zonas_range_span">50%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="side">
+        <div id="general_info">
+          <div class="split">
+            <div class="spl1">
+              <b> Zona : </b>
+            </div>
+            <div class="spl2">
+              <select id="zona" onchange="sel_zona()"></select>
+            </div>
+            <div class="material-icons md-14" >info
+              <span class="tooltiptext">La zona designa las normas técnicas urbanísticas del lote.</span>
+            </div>
+          </div>
+          <div class="split">
+            <div class="spl1">
+              <b> Uso : </b>
+            </div>
+            <div class="spl2">
+              <select id="sel_tipo" onchange="sel_subtipo()"></select>
+            </div>
+            <div class="material-icons md-14">info
+              <span class="tooltiptext">Uso que se le dará al lote según los usos compatibles de la zona.</span>
+            </div>
+          </div>
+          <div class="split">
+            <div class="spl3">
+              <b> Área Total: </b>
+            </div>
+            <div class="spl4">
+              <div id="area_lt"></div>
+            </div>
+          </div>
+          <div class="split">
+            <div class="spl3">
+              <b> Área Techada: </b>
+            </div>
+            <div class="spl4">
+              <span id="acons"></span>
+            </div>
+            <span class="material-icons md-14" id="cost">info
+              <div class="tooltiptext">Área que se calcula sumando la proyección de los límites de la poligonal del techo que encierra cada piso.
+              </div>
+            </span>
+          </div>
+        </div>
+        <div id="detail_info">
+          <input id="info_chbox" type="checkbox" style="display:none" checked/>
+          <label for="info_chbox" id="btn_info" onclick="chng_name(this,'+ info','- info')">+ info</label>
+          <div id="sub_info">
+            <div class="btn_container">
+              <button id="btn_1" style="width:33.33%" onclick="dis_1()">LOTE</button>
+              <button id="btn_2" style="width:33.33%" onclick="dis_2()">ZONA</button>
+              <button id="btn_3" style="width:33.33%" onclick="dis_3()">DOC</button>
+            </div>
+            <div class="s_info" id="info1">
+              <div class="split">
+                <div class= "ss_info">
+                  Manzana y Nro:
+                </div>
+                <div class= "ss_info" id="direccion"></div>
+              </div>
+              <div class="split">
+                <span class= "ss_info">
+                  <div class="material-icons md-14" >info
+                    <span class="tooltiptext"> Superficie de terreno donde no existen proyecciones de áreas techadas</span>
+                  </div>
+                  Área Libre:
+                </span>
+                <span class= "ss_info" id="alib_l"></span>
+              </div>
+              <div class="split">
+                <div class="ss_info">
+                  Pisos :
+                </div>
+                <div class="spl2">
+                  <input type="number" id="pisos_lt" min="0" max="1" onchange="change_pisos()">
+                </div>
+              </div>
+            </div>
+            <div class="s_info" id="info2" style="display: none">
+              <div class="split">
+                <span class= "ss_info">
+                  <div class="material-icons md-14">info
+                    <span class="tooltiptext"> Porcentaje de terreno del lote donde no existen proyecciones de áreas techadas dependiendo de la zona</span>
+                  </div>
+                  Área Libre:
+                </span>
+                <span class= "ss_info" id="alib_z"></span>
+              </div>
+              <div class="split">
+                <span class= "ss_info">
+                  <div class="material-icons md-14">info
+                    <span class="tooltiptext">Factor por el que se multiplica el área de un terreno urbano y cuyo resultado es el área techada máxima posible.</span>
+                  </div>
+                  Coeficiente:
+                </span>
+                <span class= "ss_info" id="coef"></span>
+              </div>
+              <div class="split">
+                <span class= "ss_info">
+                  <div class="material-icons md-14">info
+                    <span class="tooltiptext">Cantidad máxima de pisos que se puede construir en la zona.</span>
+                  </div>
+                  Altura Máxima:
+                </span>
+                <span class= "ss_info" id="alt"></span>
+              </div>
+              <div class="split">
+                <span class= "ss_info">
+                  <div class="material-icons md-14">info
+                    <span class="tooltiptext">Distancia que existe entre el límite de propiedad y el límite de edificación.</span>
+                  </div>
+                  Retiro:
+                </span>
+                <span class= "ss_info" id="ret"></span>
+              </div>
+              <div class="split">
+                <div class= "ss_info">
+                  Estacionamiento:
+                </div>
+                <div class= "ss_info" id="est"></div>
+              </div>
+            </div>
+            <div class="s_info" id="info3" style="display: none">
+              <div class="split" style="display: block;">
+                <div style="padding: 1em;">
+                  José Luis Bustamante y Rivero
+                </div>
+                <div style="padding: 1em;">
+                  <a href="#" style="color: green">Certificado de Parámetros Urbanísticos</a>
+                </div>
+                <div style="padding: 1em;">
+                  <a href="#" style="color: green">Planos de zonificación</a>
+                </div>
+                
+              </div>
+            </div>
+            <div id="chebo_multi" style="display: none;">
+              <span>
+                * El lote debe encontrarse frente a parques o vias con ancho mayor a 18ml
+              </span>
+            </div>
+          </div>
+        </div>
+        <a id="a_cal" href="/calculadora/100">calcular precio</a>
+        <div class="btn_container" id="abajo">
+          <button id="btn_2d" style="width:50%" onclick="dis_2d()">PLANO</button>
+          <button id="btn_3d" style="width:50%" onclick="dis_3d()">3D</button>
+        </div>
+        <div id= "papa_2d">
+          <canvas id="modelo_2d" height="400" width="400"></canvas>
+        </div>
+        <div id= "papa_3d" style="display: none;">
+        </div>
+        </div>
+    </div>
+    <footer>Made with <a href="https://glitch.com">Glitch</a>!</footer>
+  </body>
+</html>

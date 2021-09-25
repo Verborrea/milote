@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+#container {
+  display: flex;
+}
+
+#container ul {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+#container ul li {
+  font-size: 12pt;
+  padding: 0.3em;
+}
+#container ul li:hover {
+  background-color: #eee;
+}
+
+.vcenter{
+  margin: 1em auto;
+  display: block;
+}
+
+#side {
+  flex: 1 1 20%;
+  background-color: white;
+  box-shadow: var(--devsite-page-box-shadow,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15));
+  padding: 20px;
+}
+
+#content {
+  flex: 1 1 60%;
+  padding: 2rem 3rem;
+  background-color: #ffffff;
+  text-align: justify;
+  margin: 2.5rem 5rem;
+  box-shadow: var(--devsite-page-box-shadow,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15));
+}
+
+#publi{
+  flex: 1 1 20%;
+}
+
+#content h1 {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.categoria {
+  margin-bottom: 1rem;
+}
+
+.nom_categoria {
+  margin-bottom: 0.5em;
+  font-size: 16pt;
+}
+
+.nom_categoria a {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.categoria a {
+  display: block;
+  text-decoration: none;
+  color: #222;
+}
+
+.topic {
+  padding: 1rem 0;
+}
+
+.topic h2 {
+  margin-bottom: 0.3rem;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.subtopic {
+  padding: 1rem 0;
+  padding-left: 1rem;
+}
+
+.subtopic h2 {
+  margin-bottom: 0.3rem;
+  font-size: 16pt;
+  display: inline-block;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.subtopic span {
+  margin-left: 0.3rem;
+}
+
+#content a{
+  color: var(--green);
+}
+
+.doc_toggle_label {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  #container {
+    width: 100%;
+    display: block;
+  }
+  #side {
+    display: none;
+    background-color: #eee;
+    margin-bottom: 2em;
+  }
+  #content {
+    padding: 1rem 1.5rem;
+    box-shadow: none;
+    margin: 0;
+  }
+  .doc_toggle_label {
+    font-size: 12pt;
+    background-color: #eee;
+    width: fit-content;
+    display: block;
+    padding: 0.5em;
+    margin: 1em;
+    border: 1px solid #222;
+  }
+}

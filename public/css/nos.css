@@ -1,0 +1,71 @@
+#main {
+  width: 75ch;
+  margin: 6rem auto;
+}
+
+h2 {
+  margin-bottom: 1em;
+  font-size: 38pt;
+  text-transform: lowercase;
+}
+
+#hh {
+  text-align: right;
+}
+
+.dd {
+  margin-bottom: 2em;
+  text-align: justify;
+/*   text-align: left; */
+  font-size: 14pt;
+  color: #444;
+}
+
+#mnsjtexto{
+  border: 2px solid #eee
+}
+
+#d2 {
+  text-align-last: right;
+}
+
+
+p {
+  margin-bottom: 1em;
+}
+
+img {
+  display: block;
+  width: 350px;
+  margin: 0 auto;
+}
+
+#nombre {
+  margin-top: 0.5em;
+  text-align: center;
+  color: #000;
+}
+
+#cargo {
+  text-align: center;
+  font-size: 12pt;
+  color: #666;
+}
+
+@media (max-width: 800px) {
+  #main {
+    width: 90%;
+    margin: 1.5rem auto;
+  }
+  h2 {
+    margin-bottom: 0.75em;
+    font-size: 30pt;
+  }
+  p {
+    margin-bottom: 1em;
+    text-align: left;
+  }
+  #d2 {
+    text-align-last: left;
+  }
+}
